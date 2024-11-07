@@ -3,18 +3,14 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
-
-def preprocess_data(data):
-    # A completer
-    pass
-
-
 def predict_rating(data):
     # Preprocess data
-    data = preprocess_data(data)
+
+    data['RATING'] = data['RATING'].replace(',', '.', regex=True).astype(float)
+    data['VOTES'] = data['VOTES'].replace(',', '', regex=True).astype(float)
 
     # Selecting features and target variable
-    X = data[['RunTime', 'VOTES', 'GENRE_ENCODED']]
+    X = data[['RunTime', 'VOTES']]
     y = data['RATING']
 
     # Handle missing values in the target variable
@@ -36,11 +32,11 @@ def predict_rating(data):
 
     r2 = r2_score(y_test, predictions)
 
-    return predictions, y_test, mse, r2
+    return predictions, y_test, r2, mse
 
 
 # Load data from a CSV file
-file_path = '../../../data/movies.csv'  # Replace with your file path
+file_path = '../../../data/movieresult.csv'  # Replace with your file path
 df = pd.read_csv(file_path)
 
 # Running the prediction
