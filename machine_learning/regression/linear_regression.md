@@ -28,7 +28,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 
 # Charger le dataset
-df = pd.read_csv('house_price.csv')  # Assurez-vous d'avoir le fichier "house_price.csv"
+df = pd.read_csv('Housing.csv')  # Assurez-vous d'avoir le fichier "house_price.csv"
 print(df.head())
 ```
 
